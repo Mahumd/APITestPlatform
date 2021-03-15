@@ -3,7 +3,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 # Create your views here.
 
 def welcome(request):
-    return render(request,'welcome.html')
+    return render(request,'welcome.html',{"whichHTML":"home.html","oid":""})
+
 
 
 # 返回子页面

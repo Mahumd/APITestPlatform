@@ -5,13 +5,11 @@
     <title>首页</title>
 	<link rel="stylesheet" type="text/css" href="../static/201710241453/css/htmleaf-demo.css">
 	<link rel="stylesheet" type="text/css" href="../static/201710241453/css/nav.css">
-       <link rel="stylesheet" type="text/css" href="../static/201710241453/fonts/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../static/201710241453/fonts/iconfont.css">
 </head>
 <body>
-{#    <div style="background-color: #475e91;text-align: center;border-radius: 5px;box-shadow: 4px 4px 10px #535353;width: 700px;height: 45px;margin: 0 auto">#}
-{#        <h1 style="color: #fbfffd;">欢迎来到 接口自动化测试平台首页</h1>#}
-{#    </div>#}
-	<div class="nav">
+
+	<div class="nav" id="navbar" style="height: 1200px">
 	        <div class="nav-top">
 	            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="../static/201710241453/images/mini.png" ></div>
 	        </div>
@@ -25,17 +23,43 @@
 	                </ul>
 	            </li>
 	        </ul>
-	    </div>
+    </div>
 
+    <button id="menu_btn" onclick="display_menu()" style="float: left; margin-left: 220px ;color: white;background-color: #2f3238;border-radius: 0 10px 10px 0">
+        隐藏
+    </button>
 
+{#控制菜单栏隐藏或者显示#}
+<script>
+    function display_menu() {
+        menu = document.getElementById('navbar');
+        btn = document.getElementById('menu_btn');
+        if(btn.innerText == '隐藏'){
+            menu.style.display = 'none';
+            btn.style.marginLeft='0px';
+            btn.innerText='显示';
+        }else{
+            menu.style.display = 'block';
+            btn.style.marginLeft='217px';
+            btn.innerText='隐藏';
+        }
+
+    }
+</script>
+
+    <a href="/home/">
+        <button style="float: right;background-color: #2f3238;color: white;border-radius: 0 0 0 10px">
+        🏠 主页
+        </button>
+    </a>
 <script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
 <script type="text/javascript" src="../static/201710241453/js/nav.js"></script>
 
-<div id="page1" ></div>
+    <div id="page1" ></div>
 
 <script>
-$('#page1').load('/child/'+'{{ whichHTML }}/{{ oid }}/')
+    $('#page1').load('/child/'+'{{ whichHTML }}/{{ oid }}/')
 </script>
 
 
