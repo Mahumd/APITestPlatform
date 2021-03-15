@@ -3,8 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>测试平台登录</title>
+    <style>
+        body{
+            background: url("../static/login.png");
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .meng_input{
+            width: 200px;
+            height: 30px;
+            background-color: #fff7ee;
+            float: right;
+            margin-right: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-
+    <div style="box-shadow: 4px 4px 6px #2a262a;margin-left: -webkit-calc(50% - 150px);width: 300px;background-color: white;opacity: 0.8;border-radius: 10px;text-align: center">
+        <span style="font-size: xx-large;color: #1e1107">接口测试平台</span>
+        <br>
+        <span>登录/注册</span>
+        <br>
+        <div style="padding-left: 10px;text-align: left">
+            用户名：<input type="text" class="meng_input">
+            <br><br>
+            密 码：<input type="text" class="meng_input">
+            <br><br><br>
+            <button style="margin-left: 10px;width: 90%;height: 30px;background-color: #cc0000;color: white;font-size: medium;border-radius: 10px">登录</button>
+            <br><br>
+            若首次登录，请点击 <a href="#">注销账号</a>
+            <br><br>
+        </div>
+    </div>
 </body>
 </html>

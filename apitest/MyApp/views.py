@@ -15,4 +15,5 @@ def child(request,eid,oid):
 def home(request):
     return render(request,'welcome.html',{"whichHTML":"home.html","oid":""})
 
-
+def login(request):
+    return render(request,'login.html')
