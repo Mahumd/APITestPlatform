@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^$', home),
     url(r'^home/$', home),  # 进入首页
     url(r'^login/$', login),  # 进入登录页
+    url(r'^login_action/$', login_action),  # 登录
     # 返回子菜单
     url(r'^child/(?P<eid>.+)/(?P<oid>.*)/$',child)
 ]
