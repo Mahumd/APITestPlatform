@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^$', home),
     url(r'^home/$', home),  # 进入首页
     url(r'^login/$', login),  # 进入登录页
+    url(r'^logout/$', logout),  # 退出
     url(r'^login_action/$', login_action),  # 登录
     url(r'^register_action/$', register_action),  # 注册
     url(r'^accounts/login/$', login),  # 非登录态自动跳回登录页面

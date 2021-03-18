@@ -21,6 +21,10 @@ def home(request):
 def login(request):
     return render(request,'login.html')
 
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect('/login/')
+
 def login_action(request):
     # 获取前端传递的数据
     u_name = request.GET['username']
