@@ -13,23 +13,20 @@
 	        <div class="nav-top">
 	            <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="../static/201710241453/images/mini.png" ></div>
 	        </div>
-	        <ul>
-	            <li class="nav-item">
-	                <a href="javascript:;"><i class="my-icon nav-icon icon_2"></i><span>项目管理</span><i class="my-icon nav-more"></i></a>
-	                <ul>
-	                    <li><a href="javascript:;"><span>项目列表</span></a></li>
-	                    <li><a href="javascript:;"><span>接口库</span></a></li>
-	                    <li><a href="javascript:;"><span>用例库</span></a></li>
-	                </ul>
-	            </li>
-	        </ul>
+                <ul>
+                    <li><a href="#">项目列表</a></li>
+                    <li><a href="#">接口调试</a></li>
+                    <li><a href="#">帮助</a></li>
+                    <li><a href="/admin/" target="_blank">后台</a></li>
+                </ul>
+
     </div>
 
     <button id="menu_btn" onclick="display_menu()" style="float: left; margin-left: 220px ;color: white;background-color: #2f3238;border-radius: 0 10px 10px 0">
         隐藏
     </button>
 
-{#控制菜单栏隐藏或者显示#}
+
 <script>
     function display_menu() {
         menu = document.getElementById('navbar');
