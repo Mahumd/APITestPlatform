@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^login_action/$', login_action),  # 登录
     url(r'^register_action/$', register_action),  # 注册
     url(r'^accounts/login/$', login),  # 非登录态自动跳回登录页面
+    url(r'^/tucao_send/$', tucao_send),  # 非登录态自动跳回登录页面
 
     # 返回子菜单
     url(r'^child/(?P<eid>.+)/(?P<oid>.*)/$',child)

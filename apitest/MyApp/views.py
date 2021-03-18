@@ -56,3 +56,5 @@ def register_action(request):
         return HttpResponse('成功')
     except:
         return HttpResponse('失败')
+def tucao_send(request):
+    pass

@@ -4,28 +4,34 @@
     <meta charset="UTF-8">
     <title>测试平台</title>
     <link rel="stylesheet" href="../static/201710241453/css/home.css">
+    <style>
+        .welcome{clear: both}
+    </style>
 </head>
 <body>
     <div style="text-align: center;background-color: #34A0CE;height: 1200px;">
-        <h1>欢迎使用 接口测试平台</h1>
-        <h3>Welcome to ApiTest</h3>
-        <div style="text-align: left;border: 3px solid grey;width: 200px;margin-left: -webkit-calc(50% - 100px);padding-left: 50px">
-            <h2>如何使用</h2>
-            1.打开左侧菜单栏<br>
-            2.选择相应的功能<br>
-            3.点击进入使用<br>
-            <br>
-        </div>
-        <h2>版本更新：</h2>
-        <span>项目管理模块上线，修复接口库部分问题</span>
-        <h2>反馈：</h2>
-        <span>如有问题请发送邮件到：mengxinfeng96@163.com</span>
-        <span>或进入<a href="#">或进入平台的优化建议</a>中反馈</span>
+        <h1 class="welcome">欢迎 使用接口测试平台</h1>
+        <br>
+        <h3>Welcome to use ApiTest</h3>
+        <br>
+        <textarea id="tucao_input" cols="50" rows="10" placeholder="匿名吐槽和反馈使用，点击 推送 按钮即可发送给客服！" style="border-radius: 5px; box-shadow: 4px 4px 9px darkslategrey"></textarea>
+        <br>
+        <button onclick="tucao_send()" style="width: 100px;border-radius: 0px 0px 50px 50px">推送</button>
+        <br>
         <br>
         <div>
             <img src="../static/201710241453/images/api_img.png" alt="平台名称" style="height: 259px">
         </div>
 
     </div>
+    <script>
+        function tucao_send(){
+            $.get("/tucao_send/",{
+                "tucao_text":document.getElementById('tucao_input').value
+            },function(ret){
+                alert('已经吐槽成功')
+            })
+        }
+    </script>
 </body>
 </html>
