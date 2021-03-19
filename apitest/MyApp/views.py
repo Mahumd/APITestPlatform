@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from MyApp.models import *
 # Create your views here.
 @login_required()
 def welcome(request):
@@ -57,4 +58,10 @@ def register_action(request):
     except:
         return HttpResponse('失败')
 def tucao_send(request):
-    pass
+    # 后端获取前端传递的吐槽的内容
+    tucao_text = request.GET['tucao_text']
+    print(tucao_text)
+    # 将吐槽的内容写入数据库当中
+    DB_tucao.objects.create(user=request.user.username,text=tucao_text)
+    # 返回给前端一个值，表示入库成功
+    return HttpResponse('成功')
