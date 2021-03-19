@@ -16,7 +16,7 @@
                 <ul>
                     <li><a href="#">项目列表</a></li>
                     <li><a href="#">接口调试</a></li>
-                    <li><a href="#">帮助</a></li>
+                    <li><a href="/help/">帮助</a></li>
                     <li><a href="/admin/" target="_blank">后台</a></li>
                 </ul>
 
@@ -67,6 +67,10 @@
     $('#page1').load('/child/'+'{{ whichHTML }}/{{ oid }}/')
 </script>
 
-
+<script>
+    if ('{{whichHTML}}' != 'home.html'){
+        document.getElementById('menu_btn').click()
+    }
+</script>
 </body>
 </html>

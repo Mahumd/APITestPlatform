@@ -65,3 +65,5 @@ def tucao_send(request):
     DB_tucao.objects.create(user=request.user.username,text=tucao_text)
     # 返回给前端一个值，表示入库成功
     return HttpResponse('成功')
+def help_info(request):
+    return render(request,'welcome.html',{"whichHTML":"help.html","oid":""})
