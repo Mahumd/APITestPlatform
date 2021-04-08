@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^accounts/login/$', accounts_login),  # 非登录态自动跳回登录页面
     url(r'^tucao_send/$', tucao_send),  # 反馈
     url(r'^help/$', help_info),  # 帮助
+    url(r'^project_list/$', project_list),  # 进入项目列表
 
     # 返回子菜单
     url(r'^child/(?P<eid>.+)/(?P<oid>.*)/$',child)

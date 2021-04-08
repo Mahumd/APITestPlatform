@@ -33,14 +33,14 @@ class DB_home_href(models.Model):
 # 项目列表
 class DB_project_list(models.Model):
     # 项目
-    name = models.CharField(max_length=1000, null=True)
+    name = models.CharField(max_length=100, null=True)
     # 备注
-    remark = models.CharField(max_length=5000, null=True)
+    remark = models.CharField(max_length=1000, null=True)
     # 项目创建人
-    user = models.CharField(max_length=50, null=True)
+    user = models.CharField(max_length=15, null=True)
     # 项目其他创建人
-    other_user = models.CharField(max_length=50, null=True)
+    other_user = models.CharField(max_length=200, null=True)
 
     # 前端展示的项目名
     def __str__(self):
-        self.name
+        return self.name

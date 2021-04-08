@@ -19,6 +19,9 @@ def child_json(eid):
     if eid == "home.html":
         date = DB_home_href.objects.all()
         res = {"hrefs": date}
+    if eid == "project_list.html":
+        date = DB_project_list.objects.all()
+        res = {"projects": date}
     return res
 
 
@@ -93,3 +96,7 @@ def tucao_send(request):
 
 def help_info(request):
     return render(request, 'welcome.html', {"whichHTML": "help.html", "oid": ""})
+
+
+def project_list(request):
+    return render(request, 'welcome.html', {"whichHTML": "project_list.html", "oid": ""})
