@@ -5,6 +5,24 @@
     <title>项目列表页</title>
 </head>
 <body>
-    {{ projects }}
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody style="color: black">
+            {% for i in projects %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.user }}</td>
+                    <td>{{ i.remark }}</td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
 </body>
 </html>
