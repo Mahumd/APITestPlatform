@@ -12,9 +12,21 @@ def welcome(request):
     return render(request, 'welcome.html', {"whichHTML": "home.html", "oid": ""})
 
 
+# 控制不同的页面返回不同的数据：数据分发器
+def child_json(eid):
+    # 获取所有的超链接信息
+    res = {}
+    if eid == "home.html":
+        date = DB_home_href.objects.all()
+        res = {"hrefs": date}
+    return res
+
+
 # 返回子页面
 def child(request, eid, oid):
-    return render(request, eid)
+    # 获取所有的超链接列表
+    res = child_json(eid)
+    return render(request, eid, res)
 
 
 @login_required

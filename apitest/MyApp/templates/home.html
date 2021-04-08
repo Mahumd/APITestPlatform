@@ -11,22 +11,51 @@
             background-attachment: fixed;
             background-size: cover;
         }
-        h1,h3{
-            color: #1d7db1;
-        }
     </style>
 </head>
 <body>
     <div class="home" style="text-align: center;height: 1200px;">
-        <h1 class="welcome">欢迎 使用接口测试平台</h1>
+        <h1 class="welcome" style="color:#1d7db1">欢迎 使用接口测试平台</h1>
         <br>
-        <h3>Welcome to use ApiTest</h3>
+        <h3 style="color: #1d7db1">Welcome to use ApiTest</h3>
         <br>
-        <textarea id="tucao_input" cols="50" rows="10" placeholder="匿名吐槽和反馈使用，点击 推送 按钮即可发送给客服！" style="border-radius: 5px; box-shadow: 4px 4px 9px darkslategrey"></textarea>
+        <div style="color: green;text-align: center;background-color: #e3ffe3;margin-left:300px;opacity: 0.8;border:1px solid black;border-radius: 10px 10px 0px 10px">
+            <h3 style="color: #3e2935">欢迎使用传送门：</h3>
+            <strong >
+                {% for i in hrefs %}
+                    <a href="{{ i.href }}">{{ i.name }}</a><br>
+                {% endfor %}
+            </strong>
+            <br>
+        </div>
         <br>
-        <button onclick="tucao_send()" style="width: 100px;border-radius: 0px 0px 50px 50px">推送</button>
-        <button onclick="clear_send()" style="width: 100px;border-radius: 0px 0px 50px 50px">请空</button>
+        <div style="border: 1px solid black;border-radius: 10px 0px 0px 10px;text-align: center;background-color: #e3ffe3;opacity: 0.8;color: white;margin-left: 300px">
+            <h3 style="color: #3e2935">您的项目：</h3>
+            <span style="color: black">
+            {#       这里存放后续的个人项目列表循环，类似传送门的套路 ,点击自己创建的项目可以直接进入项目内     #}
+            </span>
+            <br>
+        </div>
+
         <br>
+        <div style="border: 1px solid black;border-radius: 10px 0px 0px 10px;text-align: center;background-color: #e3ffe3;opacity: 0.8;color: white;margin-left: 300px">
+            <h3 style="color: #3e2935">最新消息：</h3>
+            <span style="color: black">
+            帮助页面上线；<br>
+            后台开启，仅限有管理权限同学使用；<br>
+            项目列表上线，您现在可以进入所有项目内了 <br>
+                </span>
+            <br>
+        </div>
+        <br>
+        <div style="color: green;text-align: center;background-color: #e3ffe3;margin-left:300px;opacity: 0.8;border:1px solid black;border-radius: 10px 10px 0px 10px">
+            <textarea id="tucao_input" cols="50" rows="5" placeholder="匿名吐槽和反馈使用，点击 推送 按钮即可发送给客服！" style="border-radius: 5px; box-shadow: 4px 4px 9px darkslategrey"></textarea>
+            <br>
+            <button onclick="tucao_send()" style="width: 100px;border-radius: 0px 0px 50px 50px">推送</button>
+            <button onclick="clear_send()" style="width: 100px;border-radius: 0px 0px 50px 50px">请空</button>
+            <br>
+            <br>
+        </div>
         <br>
         <div>
             <img src="../static/201710241453/images/api_img.png" alt="平台名称" style="height: 259px">

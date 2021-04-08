@@ -67,6 +67,12 @@
         </span>
     </div>
     <script>
+    if ('{{whichHTML}}' != 'help.html'){
+        document.getElementById('menu_btn').style.display='none';
+    }
+    </script>
+
+    <script>
         function show_help(which_id){
             {#1.隐藏右侧所有文案#}
             document.getElementById('help_1').style.display='none';
