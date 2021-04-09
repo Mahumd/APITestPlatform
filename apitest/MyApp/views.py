@@ -106,3 +106,9 @@ def delete_project(request):
     id = request.GET['id']
     DB_project_list.objects.filter(id=id).delete()
     return HttpResponse('')
+
+
+def add_project(request):
+    project_name = request.GET['project_name']
+    DB_project_list.objects.create(name=project_name, remark='', user=request.user.username, other_user='')
+    return HttpResponse('')
