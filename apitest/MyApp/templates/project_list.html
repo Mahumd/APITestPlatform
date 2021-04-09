@@ -30,7 +30,7 @@
             <td>{{ i.user }}</td>
             <td>{{ i.remark }}</td>
             <td>
-                <button class="btn btn-success">进入</button>
+                <button class="btn btn-success"onclick="javascrip:document.location.href='/apis/{{ i.id }}'">进入</button>
                 <button class="btn btn-danger" onclick="delete_project('{{ i.id }}')">删除</button>
             </td>
         </tr>

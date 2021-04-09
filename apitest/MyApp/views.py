@@ -13,7 +13,7 @@ def welcome(request):
 
 
 # 控制不同的页面返回不同的数据：数据分发器
-def child_json(eid):
+def child_json(eid, oid=''):
     # 获取所有的超链接信息
     res = {}
     if eid == "home.html":
@@ -22,13 +22,16 @@ def child_json(eid):
     if eid == "project_list.html":
         date = DB_project_list.objects.all()
         res = {"projects": date}
+    if eid == 'P_apis.html':
+        project_name = DB_project_list.objects.filter(id=oid)[0].name
+        res = {"project_name": project_name}
     return res
 
 
 # 返回子页面
 def child(request, eid, oid):
     # 获取所有的超链接列表
-    res = child_json(eid)
+    res = child_json(eid, oid)
     return render(request, eid, res)
 
 
@@ -112,3 +115,8 @@ def add_project(request):
     project_name = request.GET['project_name']
     DB_project_list.objects.create(name=project_name, remark='', user=request.user.username, other_user='')
     return HttpResponse('')
+
+
+def open_apis(request, id):
+    project_id = id
+    return render(request, 'welcome.html', {"whichHTML": "P_apis.html", "oid": project_id})
