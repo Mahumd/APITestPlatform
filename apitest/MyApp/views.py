@@ -100,3 +100,9 @@ def help_info(request):
 
 def project_list(request):
     return render(request, 'welcome.html', {"whichHTML": "project_list.html", "oid": ""})
+
+
+def delete_project(request):
+    id = request.GET['id']
+    DB_project_list.objects.filter(id=id).delete()
+    return HttpResponse('')
