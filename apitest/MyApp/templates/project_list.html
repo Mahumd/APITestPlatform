@@ -5,20 +5,30 @@
     <title>项目列表页</title>
 </head>
 <body>
-    <table>
+    <br>
+    <h3 style="padding-left: 10px;color: #353c48">项目列表:<span style="font-size: small;color: grey">（这里显示全部项目,您可以进入他人的项目中查看）</span></h3>
+    <button style="border-left: 10px solid black;border-right: 10px solid black;border-top: 0;position: fixed;top: 0;left: -webkit-calc(50% - 75px);width: 150px;height:40px;font-size: x-large;background-color: white;color: black;border-radius: 0px 0px 10px 10px; ">新增项目</button>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>项目ID</th>
+                <th>项目名称</th>
+                <th>项目创建者</th>
+                <th>备注</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody style="color: black">
             {% for i in projects %}
                 <tr>
+                    <td>{{ i.id }}</td>
                     <td>{{ i.name }}</td>
                     <td>{{ i.user }}</td>
                     <td>{{ i.remark }}</td>
+                    <td>
+                        <button class="btn btn-success">进入</button>
+                        <button class="btn btn-danger">删除</button>
+                    </td>
                 </tr>
             {% endfor %}
 
