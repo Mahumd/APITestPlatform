@@ -12,3 +12,6 @@ admin.site.register(DB_home_href)
 
 # 注册项目表
 admin.site.register(DB_project_list)
+
+# 注册接口库
+admin.site.register(DB_apis)
