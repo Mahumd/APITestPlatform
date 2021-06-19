@@ -37,6 +37,8 @@ urlpatterns = [
     url(r'^apis/(?P<id>.*)/$', open_apis),  # 进入接口库
     url(r'^cases/(?P<id>.*)/$', open_cases),  # 进入用例库
     url(r'^project_set/(?P<id>.*)/$', open_project_set),  # 进入项目设置
+    url(r'^project_api_add/(?P<pid>.*)/$', project_id_add),  # 新增接口
+    url(r'^project_api_del/(?P<id>.*)/$', project_id_del),  # 新增接口
 
     # 返回子菜单
     url(r'^child/(?P<eid>.+)/(?P<oid>.*)/$',child)

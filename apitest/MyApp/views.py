@@ -139,3 +139,15 @@ def open_cases(request, id):
 def open_project_set(request, id):
     project_id = id
     return render(request, 'welcome.html', {"whichHTML": "P_project_set.html", "oid": project_id})
+
+def project_id_add(request,pid):
+    project_id = pid
+    # print(project_id)
+    DB_apis.objects.create(project_id=project_id)
+    return HttpResponseRedirect('/apis/%s' % project_id)
+
+def project_id_del(request,id):
+    project_id=DB_apis.objects.filter(id=id)[0].project_id
+    # print(project_id)
+    DB_apis.objects.filter(id=id).delete()
+    return HttpResponseRedirect('/apis/%s' % project_id)

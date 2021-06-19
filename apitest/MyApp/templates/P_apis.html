@@ -47,7 +47,7 @@
                      <button onclick="" class="mxf_button">备注</button>
                      <button onclick="" class="mxf_button">复制</button>
                      <button onclick="" class="mxf_button">异常值测试</button>
-                     <button onclick="" class="btn btn-danger">删除</button>
+                     <button onclick="document.location.href='/project_api_del/{{ i.id }}'" class="btn btn-danger">删除</button>
                  </td>
             </tr>
         {% endfor %}
@@ -69,7 +69,7 @@
 
 <div style="position: fixed;bottom: 0px;width: 100%;background-color: #f8f8f8;text-align: center;border: 1px solid #e7e7e7">
     <div class="btn-group">
-        <button type="button" class="btn btn-primary">新增接口</button>
+        <button type="button" class="btn btn-primary" onclick="document.location.href='/project_api_add/{{ project.id }}'">新增接口</button>
         <button type="button" class="btn btn-default">全局请求头</button>
         <button type="button" class="btn btn-default">全局域名</button>
         <button type="button" class="btn btn-default">接口文档导入</button>
