@@ -151,3 +151,15 @@ def project_id_del(request,id):
     # print(project_id)
     DB_apis.objects.filter(id=id).delete()
     return HttpResponseRedirect('/apis/%s' % project_id)
+
+def save_bz(request):
+    id = request.GET['api_id']
+    bz_value = request.GET['bz_value']
+    # print(bz_value)
+    DB_apis.objects.filter(id=id).update(desc=bz_value)
+    return HttpResponse('')
+
+def get_bz(request):
+    id = request.GET['api_id']
+    bz_value=DB_apis.objects.filter(id=id)[0].desc
+    return HttpResponse(bz_value)

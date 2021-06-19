@@ -44,7 +44,7 @@
                 <td>{{ i.id }}</td><td>{{ i.name }}</td> <td>{{ i.api_url }}</td>
                  <td>
                      <button onclick="" class="btn btn-success">调试</button>
-                     <button onclick="" class="mxf_button">备注</button>
+                     <button onclick="open_bz('{{ i.id }}')" class="mxf_button">备注</button>
                      <button onclick="" class="mxf_button">复制</button>
                      <button onclick="" class="mxf_button">异常值测试</button>
                      <button onclick="document.location.href='/project_api_del/{{ i.id }}'" class="btn btn-danger">删除</button>
@@ -54,9 +54,42 @@
     </tbody>
 </table>
 
+{#备注#}
+<script>
+    function open_bz(id) {
+        document.getElementById('bz_value').value='';
+        $.get('/get_bz/',{
+            'api_id':id
+        },function (ret) {
+            document.getElementById('bz').style.display='block';
+            document.getElementById('which_api').value=id;
+            document.getElementById('bz_value').value=ret
+        });
+
+    }
+    function save_bz() {
+        {#前后端交互#}
+        id = document.getElementById('which_api').value;
+        bz_value = document.getElementById('bz_value').value;
+        $.get('/save_bz/',{
+            'api_id':id,
+            'bz_value':bz_value
+        },function (ret) {
+            document.getElementById('bz').style.display='none'
+        })
+
+    }
+    function cancel_bz(){
+        document.getElementById('bz').style.display='none';
+    }
+</script>
+
+
+{#    隐藏菜单#}
     <script>
         document.getElementById('menu_btn').style.display='none';
     </script>
+{#    导航栏切换效果#}
     <script>
         $(function () {
             $(".wrap-li li").hover(function () {
@@ -66,7 +99,7 @@
             })
         })
     </script>
-
+{#底部信息#}
 <div style="position: fixed;bottom: 0px;width: 100%;background-color: #f8f8f8;text-align: center;border: 1px solid #e7e7e7">
     <div class="btn-group">
         <button type="button" class="btn btn-primary" onclick="document.location.href='/project_api_add/{{ project.id }}'">新增接口</button>
@@ -78,6 +111,15 @@
         <button type="button" class="btn btn-default">登录态接口</button>
     </div>
 </div>
+
+{#备注弹窗#}
+<div id="bz" style="width: 50%;height: 30%;position: fixed;left: 25%;top: 35%;background-color: #3c4043 ;box-shadow: 4px 4px 8px grey;display: none">
+    <input id="which_api" type="text" style="display: none">
+    <textarea  name="" id="bz_value" style="width: 100% ;height: 80%" placeholder="请输入该接口备注"></textarea>
+    <button style="width: 49.9%;height: 20%" onclick="save_bz()">保存</button>
+    <button style="width: 49.3%;height: 20%" onclick="cancel_bz()">取消</button>
+</div>
+
 
 </body>
 </html>
