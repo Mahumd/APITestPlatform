@@ -140,26 +140,31 @@ def open_project_set(request, id):
     project_id = id
     return render(request, 'welcome.html', {"whichHTML": "P_project_set.html", "oid": project_id})
 
-def project_id_add(request,pid):
+
+def project_id_add(request, pid):
     project_id = pid
     # print(project_id)
     DB_apis.objects.create(project_id=project_id)
     return HttpResponseRedirect('/apis/%s' % project_id)
 
-def project_id_del(request,id):
-    project_id=DB_apis.objects.filter(id=id)[0].project_id
+
+def project_id_del(request, id):
+    project_id = DB_apis.objects.filter(id=id)[0].project_id
     # print(project_id)
     DB_apis.objects.filter(id=id).delete()
     return HttpResponseRedirect('/apis/%s' % project_id)
 
+
 def save_bz(request):
     id = request.GET['api_id']
     bz_value = request.GET['bz_value']
+
     # print(bz_value)
     DB_apis.objects.filter(id=id).update(desc=bz_value)
     return HttpResponse('')
 
+
 def get_bz(request):
     id = request.GET['api_id']
-    bz_value=DB_apis.objects.filter(id=id)[0].desc
+    bz_value = DB_apis.objects.filter(id=id)[0].desc
     return HttpResponse(bz_value)

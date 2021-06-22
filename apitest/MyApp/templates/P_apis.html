@@ -121,7 +121,7 @@
 </div>
 
 {#调试弹窗及函数#}
-<div id="ts" style="width: 80%;height: 80%;background-color: pink;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey">
+<div id="ts" style="width: 80%;height: 80%;background-color: white;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey">
     <div class="btn-group" style="float: right">
         <button type="button" class="btn btn-success">保存</button>
         <button type="button" class="btn btn-danger">取消</button>
@@ -166,6 +166,38 @@
             <button type="button" class="btn btn-default" style="height: 40px;width: 60px"><span>Clear</span></button>
         </li>
     </ul>
+
+    <br><br><br>
+    <ul id="myTab" class="nav-tabs">
+        <li class="active"><a href="#None" data-toggle="tab">None</a></li>
+        <li><a href="#form-data" data-toggle="tab">form-data</a></li>
+        <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">raw <b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                <li><a href="#Text" tabindex="-1" data-toggle="tab">Text</a></li>
+                <li><a href="#JavaScript" tabindex="-1" data-toggle="tab">JavaScript</a></li>
+                <li><a href="#Json" tabindex="-1" data-toggle="tab">Json</a></li>
+                <li><a href="#Html" tabindex="-1" data-toggle="tab">Html</a></li>
+                <li><a href="#Xml" tabindex="-1" data-toggle="tab">Xml</a></li>
+            </ul>
+        </li>
+        <li><a href="#home" data-toggle="tab">返回体</a></li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="None" style="text-align: center;color: grey">
+            <h3>这个请求不会携带任何请求体</h3>
+            <h5>This request will carry any request-body</h5>
+        </div>
+        <div class="tab-pane fade" id="form-data">进入了form-data</div>
+        <div class="tab-pane fade" id="x-www-form-urlencoded">进入了x-www-form-urlencoded</div>
+        <div class="tab-pane fade" id="Text">进入了Text</div>
+        <div class="tab-pane fade" id="JavaScript">进入了JavaScript</div>
+        <div class="tab-pane fade" id="Json">进入了Json</div>
+        <div class="tab-pane fade" id="Html">进入了Html</div>
+        <div class="tab-pane fade" id="Xml">进入了Xml</div>
+    </div>
     
 </div>
 
