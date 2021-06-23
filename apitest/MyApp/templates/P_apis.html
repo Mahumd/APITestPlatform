@@ -190,7 +190,36 @@
             <h3>这个请求不会携带任何请求体</h3>
             <h5>This request will carry any request-body</h5>
         </div>
-        <div class="tab-pane fade" id="form-data">进入了form-data</div>
+        <div class="tab-pane fade" id="form-data">
+             <div class="table-responsive" style="width: 98%;color: black">
+                <table class="table table-bordered table-striped" id="mytable" style="background-color:white">
+                    <thead style="color: #337ab7;font-size: x-small">
+                      <tr>
+                        <td style="width: 30%">Key</td>
+                        <td style="width: 50%">Value</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Username</td>
+                        <td>mengxinfeng</td>
+                      </tr>
+                        <tr>
+                        <td>Password</td>
+                        <td>123456</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-default" id="add"><i class="fa fa-plus"></i> 添加新参数</button>
+            <script>window.jQuery || document.write('<script src="/static/201801271505/js/jquery-1.11.0.min.js"><\/script>')</script>
+            <script type="text/javascript" src="/static/201801271505/js/bootstable.js"></script>
+            <script type="text/javascript">
+                $('#mytable').SetEditable({
+                    $addButton: $('#add'),
+                });
+            </script>
+        </div>
         <div class="tab-pane fade" id="x-www-form-urlencoded">进入了x-www-form-urlencoded</div>
         <div class="tab-pane fade" id="Text">进入了Text</div>
         <div class="tab-pane fade" id="JavaScript">进入了JavaScript</div>
