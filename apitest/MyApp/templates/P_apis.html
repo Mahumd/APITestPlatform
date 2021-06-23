@@ -43,7 +43,7 @@
              <tr>
                 <td>{{ i.id }}</td><td>{{ i.name }}</td> <td>{{ i.api_url }}</td>
                  <td>
-                     <button onclick="" class="btn btn-success">调试</button>
+                     <button onclick="open_ts()" class="btn btn-success">调试</button>
                      <button onclick="open_bz('{{ i.id }}')" class="mxf_button">备注</button>
                      <button onclick="" class="mxf_button">复制</button>
                      <button onclick="" class="mxf_button">异常值测试</button>
@@ -121,11 +121,18 @@
 </div>
 
 {#调试弹窗及函数#}
-<div id="ts" style="width: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey">
+<div id="ts" style="width: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey;display: none">
     <div class="btn-group" style="float: right">
         <button type="button" class="btn btn-success">保存</button>
-        <button type="button" class="btn btn-danger">取消</button>
+        <button type="button" class="btn btn-danger" onclick="ts_close()">取消</button>
     </div>
+    <script>
+        function ts_close() {
+            document.getElementById('ts').style.display='none';
+        }function open_ts() {
+            document.getElementById('ts').style.display='block';
+        }
+    </script>
 
     <h3 style="color: white">接口：<small></small>-<small></small></h3>
 
