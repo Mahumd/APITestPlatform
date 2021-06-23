@@ -121,15 +121,15 @@
 </div>
 
 {#调试弹窗及函数#}
-<div id="ts" style="width: 80%;height: 80%;background-color: white;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey">
+<div id="ts" style="width: 80%;height: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey">
     <div class="btn-group" style="float: right">
         <button type="button" class="btn btn-success">保存</button>
         <button type="button" class="btn btn-danger">取消</button>
     </div>
 
-    <h3>接口：<small></small>-<small></small></h3>
+    <h3 style="color: white">接口：<small></small>-<small></small></h3>
 
-    <ul class="navbar-nav" style="width: 98%">
+    <ul class="nav navbar-nav" style="width: 98%;height: 40px;position: relative">
         <li>
             <select class="form-control" style="height: 40px">
                 <option value="none">请求方式</option>
@@ -148,7 +148,7 @@
     </ul>
     <br><br><br>
 
-    <ul class="navbar-nav" style="width: 98%">
+    <ul class="nav navbar-nav" style="width: 98%;height: 40px ;position: relative">
         <li style="width: -webkit-calc(100% - 63px)">
             <input type="text" style="height: 40px;width: 100%;padding-left: 10px" placeholder="host:http(s)://xxx.cc.com">
         </li>
@@ -158,7 +158,7 @@
     </ul>
 
     <br><br><br>
-    <ul class="navbar-nav" style="width: 98%">
+    <ul class="nav navbar-nav" style="width: 98%;height: 40px; position: relative">
         <li style="width: -webkit-calc(100% - 63px)">
             <input type="text" style="height: 40px;width: 100%;padding-left: 10px" placeholder='header请求头:  如:{"Content":"application/json"}'>
         </li>
@@ -168,12 +168,12 @@
     </ul>
 
     <br><br><br>
-    <ul id="myTab" class="nav-tabs">
+    <ul id="myTab" class="nav nav-tabs" style="width: 100%;height: 40px;position: relative">
         <li class="active"><a href="#None" data-toggle="tab">None</a></li>
         <li><a href="#form-data" data-toggle="tab">form-data</a></li>
         <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">raw <b class="caret"></b></a>
+        <li  role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">raw <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
                 <li><a href="#Text" tabindex="-1" data-toggle="tab">Text</a></li>
                 <li><a href="#JavaScript" tabindex="-1" data-toggle="tab">JavaScript</a></li>
@@ -185,7 +185,7 @@
         <li><a href="#home" data-toggle="tab">返回体</a></li>
     </ul>
 
-    <div id="myTabContent" class="tab-content">
+    <div id="myTabContent" class="tab-content" style="color: white">
         <div class="tab-pane fade in active" id="None" style="text-align: center;color: grey">
             <h3>这个请求不会携带任何请求体</h3>
             <h5>This request will carry any request-body</h5>
