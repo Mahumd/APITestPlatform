@@ -121,7 +121,7 @@
 </div>
 
 {#调试弹窗及函数#}
-<div id="ts" style="width: 80%;height: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey">
+<div id="ts" style="width: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey">
     <div class="btn-group" style="float: right">
         <button type="button" class="btn btn-success">保存</button>
         <button type="button" class="btn btn-danger">取消</button>
@@ -169,7 +169,7 @@
 
     <br><br><br>
     <ul id="myTab" class="nav nav-tabs" style="width: 100%;height: 40px;position: relative">
-        <li class="active"><a href="#None" data-toggle="tab">None</a></li>
+        <li class="active"><a href="#none" data-toggle="tab">none</a></li>
         <li><a href="#form-data" data-toggle="tab">form-data</a></li>
         <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
         <li  role="presentation" class="dropdown">
@@ -182,11 +182,11 @@
                 <li><a href="#Xml" tabindex="-1" data-toggle="tab">Xml</a></li>
             </ul>
         </li>
-        <li><a href="#home" data-toggle="tab">返回体</a></li>
+        <li><a href="#response" data-toggle="tab">返回体</a></li>
     </ul>
 
     <div id="myTabContent" class="tab-content" style="color: white">
-        <div class="tab-pane fade in active" id="None" style="text-align: center;color: grey">
+        <div class="tab-pane fade in active" id="none" style="text-align: center;color: grey">
             <h3>这个请求不会携带任何请求体</h3>
             <h5>This request will carry any request-body</h5>
         </div>
@@ -220,13 +220,56 @@
                 });
             </script>
         </div>
-        <div class="tab-pane fade" id="x-www-form-urlencoded">进入了x-www-form-urlencoded</div>
-        <div class="tab-pane fade" id="Text">进入了Text</div>
-        <div class="tab-pane fade" id="JavaScript">进入了JavaScript</div>
-        <div class="tab-pane fade" id="Json">进入了Json</div>
-        <div class="tab-pane fade" id="Html">进入了Html</div>
-        <div class="tab-pane fade" id="Xml">进入了Xml</div>
+        <div class="tab-pane fade" id="x-www-form-urlencoded">
+            <div class="table-responsive" style="width: 98%;color: black">
+                <table class="table table-bordered table-striped" id="mytable2" style="background-color:white">
+                    <thead style="color: #337ab7;font-size: x-small">
+                      <tr>
+                        <td style="width: 30%">Key</td>
+                        <td style="width: 50%">Value</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Username</td>
+                        <td>mengxinfeng</td>
+                      </tr>
+                        <tr>
+                        <td>Password</td>
+                        <td>123456</td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-default" id="add2"><i class="fa fa-plus"></i> 添加新参数</button>
+            <script>window.jQuery || document.write('<script src="/static/201801271505/js/jquery-1.11.0.min.js"><\/script>')</script>
+            <script type="text/javascript" src="/static/201801271505/js/bootstable.js"></script>
+            <script type="text/javascript">
+                $('#mytable2').SetEditable({
+                    $addButton: $('#add2'),
+                });
+            </script>
+        </div>
+        <div class="tab-pane fade" id="Text">
+            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Text</textarea>
+        </div>
+        <div class="tab-pane fade" id="JavaScript">
+            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了JavaScript</textarea>
+        </div>
+        <div class="tab-pane fade" id="Json">
+            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Json</textarea>
+        </div>
+        <div class="tab-pane fade" id="Html">
+            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Html</textarea>
+        </div>
+        <div class="tab-pane fade" id="Xml">
+            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Xml</textarea>
+        </div>
+        <div class="tab-pane fade" id="response">
+            <textarea name="" id="" disabled="disabled" style="width: 98%;height: 300px"></textarea>
+        </div>
     </div>
+    <br>
     
 </div>
 
