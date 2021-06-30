@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>接口库</title>
     <style>
-        .mxf_button{
+        .mxf_button {
             background: linear-gradient(to top, #daffff, white);
             border-radius: 5px;
             border: 1px solid #353c48;
@@ -14,19 +14,20 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation" style="position: absolute;top: 0px;left: 80px;width:-webkit-calc(100% - 200px);z-index: 1">
+<nav class="navbar navbar-default" role="navigation"
+     style="position: absolute;top: 0px;left: 80px;width:-webkit-calc(100% - 200px);z-index: 1">
     <div class="container-fluid">
-    <div class="navbar-header">
-        <span style="font-size: xx-small" class="navbar-brand" >项目名称：{{ project.name }}</span>
-        <a class="navbar-brand" href="/project_list/">返回项目列表</a>
-    </div>
-    <div>
-        <ul class="navbar-nav navbar-brand wrap-li">
-            <li class="active"><a href="/apis/{{ project.id }}/" style="padding: 16px 20px">接口库</a></li>
-            <li><a href="/cases/{{ project.id }}/" style="padding: 16px 20px">用例库</a></li>
-            <li><a href="/project_set/{{ project.id }}/" style="padding: 16px 20px" >项目设置</a></li>
-        </ul>
-    </div>
+        <div class="navbar-header">
+            <span style="font-size: xx-small" class="navbar-brand">项目名称：{{ project.name }}</span>
+            <a class="navbar-brand" href="/project_list/">返回项目列表</a>
+        </div>
+        <div>
+            <ul class="navbar-nav navbar-brand wrap-li">
+                <li class="active"><a href="/apis/{{ project.id }}/" style="padding: 16px 20px">接口库</a></li>
+                <li><a href="/cases/{{ project.id }}/" style="padding: 16px 20px">用例库</a></li>
+                <li><a href="/project_set/{{ project.id }}/" style="padding: 16px 20px">项目设置</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -34,75 +35,85 @@
 <br><br>
 <table class="table table-striped">
     <thead>
-        <tr>
-            <th>id</th> <th style="width: 40%">接口名称</th> <th style="width: 20%">url</th> <th style="width: 350px">操作</th>
-        </tr>
+    <tr>
+        <th>id</th>
+        <th style="width: 40%">接口名称</th>
+        <th style="width: 20%">url</th>
+        <th style="width: 350px">操作</th>
+    </tr>
     </thead>
     <tbody>
-         {% for i in apis %}
-             <tr>
-                <td>{{ i.id }}</td><td>{{ i.name }}</td> <td>{{ i.api_url }}</td>
-                 <td>
-                     <button onclick="open_ts()" class="btn btn-success">调试</button>
-                     <button onclick="open_bz('{{ i.id }}')" class="mxf_button">备注</button>
-                     <button onclick="" class="mxf_button">复制</button>
-                     <button onclick="" class="mxf_button">异常值测试</button>
-                     <button onclick="document.location.href='/project_api_del/{{ i.id }}'" class="btn btn-danger">删除</button>
-                 </td>
-            </tr>
-        {% endfor %}
+    {% for i in apis %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.name }}</td>
+            <td>{{ i.api_url }}</td>
+            <td>
+                <button onclick="open_ts()" class="btn btn-success">调试</button>
+                <button onclick="open_bz('{{ i.id }}')" class="mxf_button">备注</button>
+                <button onclick="" class="mxf_button">复制</button>
+                <button onclick="" class="mxf_button">异常值测试</button>
+                <button onclick="document.location.href='/project_api_del/{{ i.id }}'" class="btn btn-danger">删除
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
     </tbody>
 </table>
 
 {#备注#}
 <script>
     function open_bz(id) {
-        document.getElementById('bz_value').value='';
-        $.get('/get_bz/',{
-            'api_id':id
-        },function (ret) {
-            document.getElementById('bz').style.display='block';
-            document.getElementById('which_api').value=id;
-            document.getElementById('bz_value').value=ret
+        document.getElementById('bz_value').value = '';
+        $.get('/get_bz/', {
+            'api_id': id
+        }, function (ret) {
+            document.getElementById('bz').style.display = 'block';
+            document.getElementById('which_api').value = id;
+            document.getElementById('bz_value').value = ret
         });
 
     }
+
     function save_bz() {
         {#前后端交互#}
         id = document.getElementById('which_api').value;
         bz_value = document.getElementById('bz_value').value;
-        $.get('/save_bz/',{
-            'api_id':id,
-            'bz_value':bz_value
-        },function (ret) {
-            document.getElementById('bz').style.display='none'
+        $.get('/save_bz/', {
+            'api_id': id,
+            'bz_value': bz_value
+        }, function (ret) {
+            document.getElementById('bz').style.display = 'none'
         })
 
     }
-    function cancel_bz(){
-        document.getElementById('bz').style.display='none';
+
+    function cancel_bz() {
+        document.getElementById('bz').style.display = 'none';
     }
 </script>
 
 
 {#    隐藏菜单#}
-    <script>
-        document.getElementById('menu_btn').style.display='none';
-    </script>
+<script>
+    document.getElementById('menu_btn').style.display = 'none';
+</script>
 {#    导航栏切换效果#}
-    <script>
-        $(function () {
-            $(".wrap-li li").hover(function () {
-                $(this).siblings("li").removeClass("active")
-                $(this).addClass("active")
+<script>
+    $(function () {
+        $(".wrap-li li").hover(function () {
+            $(this).siblings("li").removeClass("active")
+            $(this).addClass("active")
 
-            })
         })
-    </script>
+    })
+</script>
 {#底部信息#}
 <div style="position: fixed;bottom: 0px;width: 100%;background-color: #f8f8f8;text-align: center;border: 1px solid #e7e7e7">
     <div class="btn-group">
-        <button type="button" class="btn btn-primary" onclick="document.location.href='/project_api_add/{{ project.id }}'">新增接口</button>
+        <button type="button" class="btn btn-primary"
+                onclick="document.location.href='/project_api_add/{{ project.id }}'">新增接口
+        </button>
         <button type="button" class="btn btn-default">全局请求头</button>
         <button type="button" class="btn btn-default">全局域名</button>
         <button type="button" class="btn btn-default">接口文档导入</button>
@@ -113,25 +124,53 @@
 </div>
 
 {#备注弹窗#}
-<div id="bz" style="width: 50%;height: 30%;position: fixed;left: 25%;top: 35%;background-color: #3c4043 ;box-shadow: 4px 4px 8px grey;display: none">
+<div id="bz"
+     style="width: 50%;height: 30%;position: fixed;left: 25%;top: 35%;background-color: #3c4043 ;box-shadow: 4px 4px 8px grey;display: none">
     <input id="which_api" type="text" style="display: none">
-    <textarea  name="" id="bz_value" style="width: 100% ;height: 80%" placeholder="请输入该接口备注"></textarea>
+    <textarea name="" id="bz_value" style="width: 100% ;height: 80%" placeholder="请输入该接口备注"></textarea>
     <button style="width: 49.9%;height: 20%" onclick="save_bz()">保存</button>
     <button style="width: 49.3%;height: 20%" onclick="cancel_bz()">取消</button>
 </div>
 
 {#调试弹窗及函数#}
-<div id="ts" style="width: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey;display: none">
+<div id="ts"
+     style="width: 80%;background-color: #333333 ;position: fixed;left: 10%;top: 10%;border-radius: 5px;box-shadow: 4px 4px 8px grey;border: 1px solid grey;display: none">
     <div class="btn-group" style="float: right">
-        <button type="button" class="btn btn-success">保存</button>
+        <button type="button" class="btn btn-success" onclick="ts_save()" >保存</button>
         <button type="button" class="btn btn-danger" onclick="ts_close()">取消</button>
     </div>
     <script>
         function ts_close() {
-            document.getElementById('ts').style.display='none';
+            document.getElementById('ts').style.display = 'none';
             location.reload();
-        }function open_ts() {
-            document.getElementById('ts').style.display='block';
+        }
+        function open_ts() {
+            document.getElementById('ts').style.display = 'block';
+        }
+        function ts_save() {
+            var ts_method = document.getElementById('ts_method').value;
+            var ts_url = document.getElementById('ts_url').value;
+            var ts_host = document.getElementById('ts_host').value;
+            var ts_header = document.getElementById('ts_header').value;
+
+            var ts_body_method = $('ul#myTab li[class="active"]')[0].innerText;
+            if (ts_body_method == 'none'){
+                var ts_api_body = ''
+            }
+            if(ts_body_method=='form-data'){
+                var ts_api_body = []; //新建一个空列表存放后边的数据
+                var tbody_ = $('table#mytable tbody')[0];
+                var trlist = tbody_.children; //获取下边所有的tr数据
+                for (var i=0;i<trlist.length;i++){
+                    var tdarr = trlist[i].children; //获取每个tr下边的td
+                    var key = tdarr[0].innerText;
+                    var value = tdarr[1].innerText;
+                    ts_api_body.push([key,value]); //作为一个数组，存放到这个大数组中
+                }
+                console.log(ts_api_body)
+
+            }
+
         }
     </script>
 
@@ -139,7 +178,7 @@
 
     <ul class="nav navbar-nav" style="width: 98%;height: 40px;position: relative">
         <li>
-            <select class="form-control" style="height: 40px">
+            <select id="ts_method" class="form-control" style="height: 40px">
                 <option value="none">请求方式</option>
                 <option value="POST">POST</option>
                 <option value="GET">GET</option>
@@ -148,17 +187,20 @@
             </select>
         </li>
         <li style="width: -webkit-calc(100% - 225px)">
-            <input type="text" style="width: 100%;height: 40px;padding-left: 10px;" placeholder='url: 如 /abcd/efgh/' value="">
+            <input id="ts_url" type="text" style="color: black; width: 100%;height: 40px;padding-left: 10px;" placeholder='url: 如 /abcd/efgh/'
+                   value="">
         </li>
         <li>
-            <button class="btn btn-default" type="button" style="height: 40px;width: 120px;padding-left: 10px"><span style="font-size: large">Send</span></button>
+            <button class="btn btn-default" type="button" style="height: 40px;width: 120px;padding-left: 10px"><span
+                    style="font-size: large">Send</span></button>
         </li>
     </ul>
     <br><br><br>
 
     <ul class="nav navbar-nav" style="width: 98%;height: 40px ;position: relative">
         <li style="width: -webkit-calc(100% - 63px)">
-            <input type="text" style="height: 40px;width: 100%;padding-left: 10px" placeholder="host:http(s)://xxx.cc.com">
+            <input id="ts_host" type="text" style="color: black; height: 40px;width: 100%;padding-left: 10px"
+                   placeholder="host:http(s)://xxx.cc.com">
         </li>
         <li>
             <button type="button" class="btn btn-default" style="height: 40px;width: 60px"><span>Clear</span></button>
@@ -168,7 +210,8 @@
     <br><br><br>
     <ul class="nav navbar-nav" style="width: 98%;height: 40px; position: relative">
         <li style="width: -webkit-calc(100% - 63px)">
-            <input type="text" style="height: 40px;width: 100%;padding-left: 10px" placeholder='header请求头:  如:{"Content":"application/json"}'>
+            <input id="ts_header" type="text" style="color: black; height: 40px;width: 100%;padding-left: 10px"
+                   placeholder='header请求头:  如:{"Content":"application/json"}'>
         </li>
         <li>
             <button type="button" class="btn btn-default" style="height: 40px;width: 60px"><span>Clear</span></button>
@@ -180,8 +223,9 @@
         <li class="active"><a href="#none" data-toggle="tab">none</a></li>
         <li><a href="#form-data" data-toggle="tab">form-data</a></li>
         <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
-        <li  role="presentation" class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">raw <b class="caret"></b></a>
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+               aria-expanded="false">raw <b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
                 <li><a href="#Text" tabindex="-1" data-toggle="tab">Text</a></li>
                 <li><a href="#JavaScript" tabindex="-1" data-toggle="tab">JavaScript</a></li>
@@ -199,23 +243,23 @@
             <h5>This request will carry any request-body</h5>
         </div>
         <div class="tab-pane fade" id="form-data">
-             <div class="table-responsive" style="width: 98%;color: black">
+            <div class="table-responsive" style="width: 98%;color: black">
                 <table class="table table-bordered table-striped" id="mytable" style="background-color:white">
                     <thead style="color: #337ab7;font-size: x-small">
-                      <tr>
+                    <tr>
                         <td style="width: 30%">Key</td>
                         <td style="width: 50%">Value</td>
-                      </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                    <tr>
                         <td>Username</td>
                         <td>mengxinfeng</td>
-                      </tr>
-                        <tr>
+                    </tr>
+                    <tr>
                         <td>Password</td>
                         <td>123456</td>
-                      </tr>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -232,20 +276,20 @@
             <div class="table-responsive" style="width: 98%;color: black">
                 <table class="table table-bordered table-striped" id="mytable2" style="background-color:white">
                     <thead style="color: #337ab7;font-size: x-small">
-                      <tr>
+                    <tr>
                         <td style="width: 30%">Key</td>
                         <td style="width: 50%">Value</td>
-                      </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                    <tr>
                         <td>Username</td>
                         <td>mengxinfeng</td>
-                      </tr>
-                        <tr>
+                    </tr>
+                    <tr>
                         <td>Password</td>
                         <td>123456</td>
-                      </tr>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -278,7 +322,7 @@
         </div>
     </div>
     <br>
-    
+
 </div>
 
 
