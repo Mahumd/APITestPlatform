@@ -168,3 +168,25 @@ def get_bz(request):
     id = request.GET['api_id']
     bz_value = DB_apis.objects.filter(id=id)[0].desc
     return HttpResponse(bz_value)
+
+
+def Api_save(request):
+    # 提取所有的数据
+    api_id = request.GET['api_id']
+    ts_method = request.GET['ts_method']
+    ts_url = request.GET['ts_url']
+    ts_host = request.GET['ts_host']
+    ts_header = request.GET['ts_header']
+    ts_body_method = request.GET['ts_body_method']
+    ts_api_body = request.GET['ts_api_body']
+    # 保存数据到数据库中
+    DB_apis.objects.filter(id=api_id).update(
+        api_method = ts_method,
+        api_url = ts_url,
+        api_host = ts_host,
+        api_header = ts_header,
+        body_method = ts_body_method,
+        api_body = ts_api_body
+    )
+    # 返回
+    return HttpResponse('success')

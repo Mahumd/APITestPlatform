@@ -65,7 +65,7 @@ class DB_apis(models.Model):
     # 描述
     desc = models.CharField(max_length=100, null=True)
     # 请求体编码格式
-    body_method = models.CharField(max_length=20, null=True)
+    body_method = models.CharField(max_length=30, null=True)
     # 请求体
     api_body = models.CharField(max_length=1000, null=True)
     # 返回体

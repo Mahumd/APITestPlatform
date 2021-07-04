@@ -102,7 +102,7 @@
 <script>
     $(function () {
         $(".wrap-li li").hover(function () {
-            $(this).siblings("li").removeClass("active")
+            $(this).siblings("li").removeClass("active");
             $(this).addClass("active")
 
         })
@@ -140,14 +140,45 @@
         <button type="button" class="btn btn-danger" onclick="ts_close()">取消</button>
     </div>
     <script>
+        function clear_api() {
+            document.getElementById('ts_api_id').innerText = '';
+            document.getElementById('ts_api_name').innerText = '';
+            document.getElementById('ts_method').value = 'none';
+            document.getElementById('ts_url').value = '';
+            document.getElementById('ts_host').value = '';
+            document.getElementById('ts_header').value = '';
+            // 初始化请求体编码格式
+            document.getElementById('click_none').click(); //点击none标签
+            document.getElementById('mytbody').innerHTML = '<tr><td></td><td></td></tr>'; // form-date清空
+            document.getElementById('mytbody2').innerHTML = '<tr><td></td><td></td></tr>'; // x-www清空
+            //清空5个raw
+            document.getElementById('raw-Text').value = '';
+            document.getElementById('raw-JavaScript').value = '';
+            document.getElementById('raw-Json').value = '';
+            document.getElementById('raw-Html').value = '';
+            document.getElementById('raw-Xml').value = '';
+            //清空返回体
+            document.getElementById('clear_response').value = '';
+            //解决form-date没有删除和编辑
+            $('#mytable').SetEditable({
+                $addButton:$('#add'),
+            });
+            $('#mytable2').SetEditable({
+                $addButton:$('#add2')
+            });
+
+        }
         function ts_close() {
             document.getElementById('ts').style.display = 'none';
             location.reload();
         }
         function open_ts(id,name) {
+            clear_api();
             document.getElementById('ts').style.display = 'block';
             document.getElementById('ts_api_id').innerText = id;
             document.getElementById('ts_api_name').innerText = name;
+
+            
         }
         function ts_save() {
             var ts_method = document.getElementById('ts_method').value;
@@ -169,7 +200,7 @@
                     var value = tdarr[1].innerText;
                     ts_api_body.push([key,value]); //作为一个数组，存放到这个大数组中
                 }
-                {#console.log(ts_api_body)#}
+               ts_api_body = JSON.stringify(ts_api_body);
 
             }
             if(ts_body_method=='x-www-form-urlencoded'){
@@ -182,7 +213,8 @@
                    var value = tdarr[1].innerText;
                    ts_api_body.push([key,value]); //作为一个数组，存放到这个大数组中
                }
-               {#console.log(ts_api_body)#}
+               ts_api_body = JSON.stringify(ts_api_body);
+
             }
             if (ts_body_method == 'Text'){
                 var ts_api_body = document.getElementById('raw-Text').value;
@@ -200,6 +232,23 @@
             if (ts_body_method == 'Xml'){
                 var ts_api_body = document.getElementById('raw-Xml').value;
             }
+            //获取到接口id
+            var api_id = document.getElementById('ts_api_id').innerText;
+            //发送数据给后端，并保存数据到数据库
+            $.get('/Api_save/',{
+                'api_id':api_id,
+                'ts_method':ts_method,
+                'ts_url':ts_url,
+                'ts_host':ts_host,
+                'ts_header':ts_header,
+                'ts_body_method':ts_body_method,
+                'ts_api_body':ts_api_body
+
+            },function (ret) {
+                document.getElementById('ts').style.display='none'
+                {#document.location.reload();#}
+            })
+
 
         }
     </script>
@@ -250,7 +299,7 @@
 
     <br><br><br>
     <ul id="myTab" class="nav nav-tabs" style="width: 100%;height: 40px;position: relative">
-        <li class="active"><a href="#none" data-toggle="tab">none</a></li>
+        <li class="active" id="click_none"><a href="#none" data-toggle="tab">none</a></li>
         <li><a href="#form-data" data-toggle="tab">form-data</a></li>
         <li><a href="#x-www-form-urlencoded" data-toggle="tab">x-www-form-urlencoded</a></li>
         <li role="presentation" class="dropdown">
@@ -281,7 +330,7 @@
                         <td style="width: 50%">Value</td>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="mytbody">
                     <tr>
                         <td>Username</td>
                         <td>mengxinfeng</td>
@@ -311,7 +360,7 @@
                         <td style="width: 50%">Value</td>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="mytbody2">
                     <tr>
                         <td>Username</td>
                         <td>mengxinfeng</td>
@@ -348,7 +397,7 @@
             <textarea name="" id="raw-Xml" style="color: black;width: 98%;height: 300px">进入了Xml</textarea>
         </div>
         <div class="tab-pane fade" id="response">
-            <textarea name="" id="" disabled="disabled" style="width: 98%;height: 300px"></textarea>
+            <textarea name="" id="clear_response" disabled="disabled" style="width: 98%;height: 300px"></textarea>
         </div>
     </div>
     <br>
