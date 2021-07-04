@@ -49,7 +49,7 @@
             <td>{{ i.name }}</td>
             <td>{{ i.api_url }}</td>
             <td>
-                <button onclick="open_ts()" class="btn btn-success">调试</button>
+                <button onclick="open_ts('{{ i.id }}','{{ i.name }}')" class="btn btn-success">调试</button>
                 <button onclick="open_bz('{{ i.id }}')" class="mxf_button">备注</button>
                 <button onclick="" class="mxf_button">复制</button>
                 <button onclick="" class="mxf_button">异常值测试</button>
@@ -144,8 +144,10 @@
             document.getElementById('ts').style.display = 'none';
             location.reload();
         }
-        function open_ts() {
+        function open_ts(id,name) {
             document.getElementById('ts').style.display = 'block';
+            document.getElementById('ts_api_id').innerText = id;
+            document.getElementById('ts_api_name').innerText = name;
         }
         function ts_save() {
             var ts_method = document.getElementById('ts_method').value;
@@ -167,14 +169,42 @@
                     var value = tdarr[1].innerText;
                     ts_api_body.push([key,value]); //作为一个数组，存放到这个大数组中
                 }
-                console.log(ts_api_body)
+                {#console.log(ts_api_body)#}
 
+            }
+            if(ts_body_method=='x-www-form-urlencoded'){
+               var ts_api_body = []; //新建一个空列表存放后边的数据
+               var tbody_ = $('table#mytable2 tbody')[0];
+               var trlist = tbody_.children; //获取下边所有的tr数据
+               for (var i=0;i<trlist.length;i++){
+                   var tdarr = trlist[i].children; //获取每个tr下边的td
+                   var key = tdarr[0].innerText;
+                   var value = tdarr[1].innerText;
+                   ts_api_body.push([key,value]); //作为一个数组，存放到这个大数组中
+               }
+               {#console.log(ts_api_body)#}
+            }
+            if (ts_body_method == 'Text'){
+                var ts_api_body = document.getElementById('raw-Text').value;
+            }
+            {#console.log(ts_api_body);#}
+            if (ts_body_method == 'JavaScript'){
+                var ts_api_body = document.getElementById('raw-JavaScript').value;
+            }
+            if (ts_body_method == 'Json'){
+                var ts_api_body = document.getElementById('raw-Json').value;
+            }
+            if (ts_body_method == 'Html'){
+                var ts_api_body = document.getElementById('raw-Html').value;
+            }
+            if (ts_body_method == 'Xml'){
+                var ts_api_body = document.getElementById('raw-Xml').value;
             }
 
         }
     </script>
 
-    <h3 style="color: white">接口：<small></small>-<small></small></h3>
+    <h3 style="color: white">接口：<small id="ts_api_id" style="color: greenyellow"></small>-<small id="ts_api_name" style="color: greenyellow"></small></h3>
 
     <ul class="nav navbar-nav" style="width: 98%;height: 40px;position: relative">
         <li>
@@ -268,7 +298,7 @@
             <script type="text/javascript" src="/static/201801271505/js/bootstable.js"></script>
             <script type="text/javascript">
                 $('#mytable').SetEditable({
-                    $addButton: $('#add'),
+                    $addButton: $('#add')
                 });
             </script>
         </div>
@@ -298,24 +328,24 @@
             <script type="text/javascript" src="/static/201801271505/js/bootstable.js"></script>
             <script type="text/javascript">
                 $('#mytable2').SetEditable({
-                    $addButton: $('#add2'),
+                    $addButton: $('#add2')
                 });
             </script>
         </div>
         <div class="tab-pane fade" id="Text">
-            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Text</textarea>
+            <textarea name="" id="raw-Text" style="color: black;width: 98%;height: 300px">进入了Text</textarea>
         </div>
         <div class="tab-pane fade" id="JavaScript">
-            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了JavaScript</textarea>
+            <textarea name="" id="raw-JavaScript" style="color: black;width: 98%;height: 300px">进入了JavaScript</textarea>
         </div>
         <div class="tab-pane fade" id="Json">
-            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Json</textarea>
+            <textarea name="" id="raw-Json" style="color: black;width: 98%;height: 300px">进入了Json</textarea>
         </div>
         <div class="tab-pane fade" id="Html">
-            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Html</textarea>
+            <textarea name="" id="raw-Html" style="color: black;width: 98%;height: 300px">进入了Html</textarea>
         </div>
         <div class="tab-pane fade" id="Xml">
-            <textarea name="" id="" style="color: black;width: 98%;height: 300px">进入了Xml</textarea>
+            <textarea name="" id="raw-Xml" style="color: black;width: 98%;height: 300px">进入了Xml</textarea>
         </div>
         <div class="tab-pane fade" id="response">
             <textarea name="" id="" disabled="disabled" style="width: 98%;height: 300px"></textarea>
